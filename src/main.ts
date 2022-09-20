@@ -4,6 +4,8 @@ import config from './config'
 import { start as server } from './server'
 
 import { start as actors } from './rabbi/actors'
+import { bitsocket } from './rabbi/bitsocket';
+import { sync_bitchat } from './planaria';
 
 export async function start() {
 
@@ -18,6 +20,17 @@ export async function start() {
     actors();
 
   }
+
+  sync_bitchat()
+
+  return
+
+
+  bitsocket().on('message', (msg) => {
+
+    console.log(msg)
+
+  })
 
 }
 

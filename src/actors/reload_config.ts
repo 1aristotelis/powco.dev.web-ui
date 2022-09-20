@@ -1,4 +1,3 @@
-
 import { channel, log } from 'rabbi'
 
 import { loadFromFiles } from '../config'
