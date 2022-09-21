@@ -48,11 +48,14 @@ nconf.defaults({
   host: '0.0.0.0',
   port: '5200',
   prometheus_enabled: true,
-  http_api_enabled: false,
+  http_api_enabled: true,
   swagger_enabled: true,
   postgres_enabled: false,
   amqp_enabled: false,
   loki_enabled: false,
+  webui_enabled: true,
+  webui_host: '127.0.0.1',
+  webui_port: 3000,
   node_env: 'development'
 })
 
