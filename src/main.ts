@@ -3,11 +3,15 @@ import config from './config'
 
 import { start as server } from './server'
 
+import { knex } from './knex'
+
 import { start as actors } from './rabbi/actors'
 import { bitsocket } from './rabbi/bitsocket';
 import { sync_bitchat } from './planaria';
 
 export async function start() {
+
+  await knex.migrate.latest();
 
   if (config.get('http_api_enabled')) {
 
@@ -22,9 +26,6 @@ export async function start() {
   }
 
   sync_bitchat()
-
-  return
-
 
   bitsocket().on('message', (msg) => {
 

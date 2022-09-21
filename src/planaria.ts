@@ -1,7 +1,7 @@
 import { Crawler } from "./rabbi/bitbus";
 
-import { models, Message } from "./models"
 import events from "./events";
+import { knex } from "./knex";
 
 const moment = require('moment')
 
@@ -19,17 +19,17 @@ export interface BMAPTransaction {
 export async function sync_bitchat() {
 
   const query = {
-      "v": 3,
-      "q": {
-        "find": {
-          "MAP.type": { "$in": ["post","message"] }, 
-        },
-        "sort": {
-          "blk.t": -1
-        },
-        "limit": 100
-      }
-  }
+    "v": 3,
+    "q": {
+      "find": {
+        "MAP.type": "message"
+      },
+      "sort": {
+        "blk.t": 1
+      },
+      "limit": 1000
+    }
+}
   let query_b64 = btoa(JSON.stringify(query)) 
 
   const crawler = new Crawler({
@@ -72,54 +72,30 @@ export async function handleBMAPTransaction(data: BMAPTransaction) {
   var { AIP, B, MAP, timestamp, tx_id, url } = data
 
   //console.log(data)
-  
-  try {
-    var record = await models.Message.findOne({
-      where: {
-        tx_id
-      }
-    })
-    
-  } catch (error) {
-    console.log('sync_bitchat.find.message.error')
-  }
-  
-  
+  var [record] = await knex('messages').where({tx_id}).select('*')
+
   if (record) { 
     
-    console.log('sync_bitchat.message.duplicate')
-    return record
+    console.log('message.duplicate', record.tx_id)
   } else {
     
-    console.log("trying to record tx:", tx_id)
     try {
     
-      const [_message, isNew] = await Message.findOrCreate({
-        where: {
-          tx_id
-        },
-  
-        defaults: {
-          tx_id,
-          timestamp,
-          content: B.content,
-          user : AIP? AIP.address : MAP.paymail,
-          url
-        }
-      })
-      console.log(isNew, _message)
-  
-      if (isNew) {
-  
-        console.log('sync_bitchat.message.created', _message)
-  
-        events.emit('sync_bitchat.message.created', _message)
-  
+      const insert = {
+        tx_id,
+        timestamp,
+        content: B.content,
+        user: AIP ? AIP.address : MAP.paymail,
+        url 
       }
+
+      record = await knex('messages').insert(insert)
+
+      console.log('message.recorded', {insert,record})
   
     } catch (error) {
       
-      console.log('sync_bitchat.message.created', error)
+      console.log('message.record.error', error)
   
     }
 
