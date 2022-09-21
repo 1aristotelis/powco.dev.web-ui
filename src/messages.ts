@@ -16,7 +16,7 @@ interface MessagesQuery {
 export async function loadMessages (query: MessagesQuery={}): Promise<Message[]> {
 
     let messages = await knex('messages')
-        .orderBy('id', 'desc')
+        .orderBy('id', 'asc')
         .select('*')
     return messages 
 }

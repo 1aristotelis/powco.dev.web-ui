@@ -140,7 +140,7 @@ server.route({
   path: '/api/v1/messages/new',
   handler: handlers.Messages.build,
   options: {
-    description: 'Return required Transaction Outputs for a BitChat massage',
+    description: 'Return required Transaction Outputs for a BitChat message',
     tags: ['api', 'messages'],
     response: {
       failAction: 'log',
@@ -281,8 +281,8 @@ export async function start() {
         version: Pack.version,
         description: 'BitCoin powered Chat'
       },
-      schemes: ['https'],
-      host: 'http://localhost:8000',
+      schemes: ['https', 'http'],
+      host: 'httpw://askbitcoin.ai',
       documentationPath: '/',
       grouping: 'tags'
     }
