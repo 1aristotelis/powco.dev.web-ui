@@ -46,7 +46,6 @@ export async function sync_bitchat() {
           item.timestamp = moment(item.blk.t*1000).format('M/D, h:mm:ss a');
           item.url = item.MAP.type === 'post' ? item.MAP.app === 'twetch' ? 'https://cozy-homes.xyz/t/' : 'https://blockpost.network/post/' : 'https://whatsonchain.com/tx/'
         })
-        outputs = [...outputs.sort((a, b) => a.blk.t > b.blk.t ? -1 : 1)]
 
         outputs.map(output => {
 
