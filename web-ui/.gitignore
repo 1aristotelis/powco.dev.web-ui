@@ -14,10 +14,15 @@
 
 # production
 /build
+.env
+.package-lock.json
+.yarnrc.yml
+
 
 # misc
 .DS_Store
 *.pem
+.bit
 
 # debug
 npm-debug.log*
@@ -30,7 +35,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts

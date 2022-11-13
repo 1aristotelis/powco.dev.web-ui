@@ -9,11 +9,16 @@ import { log } from './log'
 
 import { join } from 'path'
 
+import { plugin as websockets } from './socket.io/plugin'
+
 const Joi = require('joi')
 
 const Pack = require('../package');
 
 import { load } from './server/handlers'
+
+import { connectClient } from './socket.io/client'
+
 
 const handlers = load(join(__dirname, './server/handlers'))
 
@@ -103,6 +108,12 @@ if (config.get('prometheus_enabled')) {
 
 }
 
+const Post = Joi.object().label('Post')
+const Posts = Joi.array().items(Post).label('Posts')
+
+const Twetch = Joi.object().label('Twetch')
+const Twetches = Joi.array().items(Twetch).label('Twetches')
+
 const Message = Joi.object().label('Message')
 const Messages = Joi.array().items(Message).label('Messages')
 
@@ -154,6 +165,23 @@ server.route({
 
 server.route({
   method: 'POST',
+  path: '/api/v1/posts/new',
+  handler: handlers.Posts.build,
+  options: {
+    description: 'Return required Transaction Outputs for a Pow Co Post',
+    tags: ['api', 'posts'],
+    response: {
+      failAction: 'log',
+      schema: Joi.object({
+        outputs: Outputs.required(),
+        error: Joi.string().optional()
+      }).label('BuildPostResponse')
+    }
+  }
+})
+
+server.route({
+  method: 'POST',
   path: '/api/v1/messages',
   handler: handlers.Messages.create,
   options: {
@@ -165,6 +193,23 @@ server.route({
         outputs: Outputs.required(),
         error: Joi.string().optional()
       }).label('BitchatTransaction')
+    }
+  }
+})
+
+server.route({
+  method: 'POST',
+  path: '/api/v1/posts',
+  handler: handlers.Posts.create,
+  options: {
+    description: 'Submit signed bitcoin transaction containing a Pow Co Post',
+    tags: ['api', 'posts'],
+    response: {
+      failAction: 'log',
+      schema: Joi.object({
+        outputs: Outputs.required(),
+        error: Joi.string().optional()
+      }).label('SapiencePost')
     }
   }
 })
@@ -186,6 +231,42 @@ server.route({
   }
 })
 
+
+
+server.route({
+  method: 'GET',
+  path: '/api/v1/posts',
+  handler: handlers.Posts.index,
+  options: {
+    description: 'List all Pow Co Posts',
+    tags: ['api', 'posts'],
+    response: {
+      failAction: 'log',
+      schema: Joi.object({
+        posts: Posts.required(),
+        error: Joi.string().optional()
+      }).label('ListPostResponse')
+    }
+  }
+})
+
+server.route({
+  method: 'GET',
+  path: '/api/v1/twetch/{tx_id}',
+  handler: handlers.Twetch.show,
+  options: {
+    description: 'Show a Twetch Post',
+    tags: ['api', 'twetch'],
+    response: {
+      failAction: 'log',
+      schema: Joi.object({
+        twetch: Twetches.required(),
+        error: Joi.string().optional()
+      }).label('ListPostResponse')
+    }
+  }
+})
+
 server.route({
   method: 'GET',
   path: '/api/v1/messages/{tx_id}',
@@ -202,6 +283,24 @@ server.route({
     }
   }
 })
+
+server.route({
+  method: 'GET',
+  path: '/api/v1/posts/{tx_id}',
+  handler: handlers.Posts.show,
+  options: {
+    description: 'Show a specific PowCo Post',
+    tags: ['api', 'posts'],
+    response: {
+      failAction: 'log',
+      schema: Joi.object({
+        post: Posts.required(),
+        link: Links.required(),
+      }).label('ShowPostResponse')
+    }
+  }
+})
+
 
 /* server.route({
   method: 'GET',
@@ -277,12 +376,12 @@ export async function start() {
 
     const swaggerOptions = {
       info: {
-        title: 'BitChat API Docs',
+        title: 'Pow Co API Docs',
         version: Pack.version,
-        description: 'BitCoin powered Chat'
+        description: 'Proof of Work Company'
       },
       schemes: ['https', 'http'],
-      host: 'httpw://askbitcoin.ai',
+      host: 'https://pow.co',
       documentationPath: '/',
       grouping: 'tags'
     }
@@ -304,6 +403,10 @@ export async function start() {
 
     log.info('server.api.documentation.swagger', swaggerOptions)
   }
+
+  //await server.register(websockets)
+  //await connectClient(`ws://${config.get('host')}:${config.get('port')}`)
+
 
   if (config.get('webui_enabled')) {
 

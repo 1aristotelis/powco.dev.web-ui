@@ -56,7 +56,8 @@ nconf.defaults({
   webui_enabled: true,
   webui_host: '127.0.0.1',
   webui_port: 3000,
-  node_env: 'development'
+  node_env: 'development',
+  planaria_token: "eyJhbGciOiJFUzI1NksiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiIxNEtjckFNQzR4N2hWSzhvMmh6ZGE0R25uR3MzWmU2ZU1jIiwiaXNzdWVyIjoiZ2VuZXJpYy1iaXRhdXRoIn0.SUxTUGpnZCt3RktmTDNyMnZnVmEzS1A1cStsMTVEb2k0UHc2QlJncGtjbjVMYXgyd2lXVHk2WkNrT0dWaWNnUnQ3YXdyZzhoU1RneVB6VGszbEd1SGt3PQ"
 })
 
 export default nconf

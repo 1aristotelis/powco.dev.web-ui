@@ -1,0 +1,21 @@
+#Refactoring
+
+[x] problems/ideas/projects into dashboard
++
+[x] only posts + messages backend side
+=
+simplicity
+
+[x] fork twetch ABI
+
+#Feature
+
+[] sapience posts
+[] BoostPow integration
+[] Sync Ask Bitcoin
+
+#Bugs
+
+[] sapience messages
+
+

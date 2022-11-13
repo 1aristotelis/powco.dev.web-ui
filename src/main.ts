@@ -6,10 +6,20 @@ import { start as server } from './server'
 import { knex } from './knex'
 
 import { start as actors } from './rabbi/actors'
-import { bitsocket } from './rabbi/bitsocket';
-import { sync_bitchat } from './planaria';
+import {sync_askbitcoin_bitbus, sync_sapience_bitbus} from './planaria';
 
 import { spawn } from 'child_process'
+
+import { log } from './log'
+
+import events from './events';
+import { buildPost } from './posts';
+import { onchain, sapience_bmap_socket } from './rabbi/bitsocket';
+import { postDetailQuery } from './rabbi/twetch';
+
+import { Job, BoostPowJobProof as Proof } from 'boostpow'
+
+import { stream } from 'powco'
 
 export async function start() {
 
@@ -17,7 +27,7 @@ export async function start() {
 
   if (config.get('webui_enabled')){
 
-    const nexjs = spawn("npm", ["run", "dev"], {
+    const nextjs = spawn("npm", ["run", "dev"], {
 
       cwd: `${process.cwd()}/web-ui`
 
@@ -37,13 +47,41 @@ export async function start() {
 
   }
 
-  sync_bitchat()
+  sync_askbitcoin_bitbus()
 
-  bitsocket().on('message', (msg) => {
+  sync_sapience_bitbus()
 
-    console.log(msg)
+  const app_id = "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN"
+
+  const sapience = onchain(app_id)
+
+  sapience.on('*', (event) => {
+
+    log.info(`onchain.${app_id}.event`, event)
 
   })
+
+  sapience.on('post', (value) => {
+
+
+    log.info(`onchain.${app_id}.post`, value)
+
+  })
+
+  stream.on('boostpow.job', (job: Job) => {
+
+    console.log('boostpow.job', job)
+  
+  })
+  
+  stream.on('boostpow.proof', (proof: Proof) => {
+  
+    console.log('boostpow.proof', proof)
+  
+  })
+  //sync_ask_bitcoin()
+
+  
 
 }
 
