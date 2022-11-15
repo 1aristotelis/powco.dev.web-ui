@@ -48,9 +48,6 @@ const SideBarDrawer = () => {
             </div>):(         
                 <div className='flex w-full px-5'>
                 <Link href="/">
-                    {/* <span className="text-xl text-left text-gray-700 dark:text-white font-bold cursor-pointer">
-                    Cozy Homes
-                    </span> */}
                     <LogoTitle/>
                 </Link>
               </div>

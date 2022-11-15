@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import Head from "next/head";
 import { postDetailQuery } from "../../services";
 import Link from "next/link";
 import {
@@ -39,21 +38,14 @@ export default function DetailPage() {
   }, [data, tx_id, router, startTimestamp]);
 
   return (
-    <>
-      <Head>
-        <title>Cozy Homes - Post Detail</title>
-        <meta name="description" content="Cozy spaces for Twetch people" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/app-icon.png"></link>
-      </Head>
-      <ThreeColumnLayout>
-        <div className="col-span-12 lg:col-span-6 min-h-screen">
-          <div className="mt-4 lg:mt-10">
-            {!loading && !error && <SimplePostCard post={post} />}
-            <div className="bg-gray-100 dark:bg-gray-600 rounded-b-lg py-3 px-4 mb-1">
-              <Composer reply_tx={tx_id} />
-            </div>
-            {/* {parents.edges.map((post) => (
+    <ThreeColumnLayout>
+      <div className="col-span-12 lg:col-span-6 min-h-screen">
+        <div className="mt-4 lg:mt-10">
+          {!loading && !error && <SimplePostCard post={post} />}
+          <div className="bg-gray-100 dark:bg-gray-600 rounded-b-lg py-3 px-4 mb-1">
+            <Composer reply_tx={tx_id} />
+          </div>
+          {/* {parents.edges.map((post) => (
               <PostReplyCard key={post.node.transaction} post={post.node} />
             ))}
             <PostDetailCard post={OP} />
@@ -66,9 +58,8 @@ export default function DetailPage() {
             {children.edges.map((post) => (
               <PostReplyCard key={post.node.transaction} post={post.node} />
             ))}  */}
-          </div>
         </div>
-      </ThreeColumnLayout>
-    </>
+      </div>
+    </ThreeColumnLayout>
   );
 }

@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TwetchProvider } from "../context/TwetchContext";
 import { BitcoinProvider } from "../context/BitcoinContext";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   /*  const [loading, setLoading] = useState(false);
@@ -26,6 +27,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      <Head>
+        <title>Ask Bitcoin | Top Answers Ranked by Proof of Work</title>
+        <link rel="icon" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Script
         src="https://one.relayx.io/relayone.js"
         strategy="beforeInteractive"

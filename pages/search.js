@@ -111,12 +111,7 @@ export default function Search() {
   return (
     <>
       search
-      {/* <Head>
-        <title>Cozy Homes - Search</title>
-        <meta name="description" content="Cozy spaces for Twetch people" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/app-icon.png"></link>
-      </Head>
+      {/* 
       <ThreeColumnLayout>
         <div className="col-span-12 lg:col-span-6 min-h-screen">
           <div className="mt-8">

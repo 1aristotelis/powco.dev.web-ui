@@ -54,12 +54,7 @@ export default function Notifications() {
   return (
     <>
       notifications
-      {/* <Head>
-        <title>Cozy Homes - Notifications</title>
-        <meta name="description" content="Cozy spaces for Twetch people" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/app-icon.png"></link>
-      </Head>
+      {/* 
       <NotificationsLayout>
         <div className="col-span-12 lg:col-span-6 min-h-screen">
           <div className="w-full mt-5">

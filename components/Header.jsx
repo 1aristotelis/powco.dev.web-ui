@@ -21,6 +21,7 @@ const Header = () => {
     setIsDrawerOpen(true)
   }
   return (
+    <>
     <div className="fixed w-screen -top-16 left-0 z-50 lg:bg-gray-200 lg:dark:bg-gray-800 lg:opacity-90 backdrop-blur-md ">
         <div className="h-16 bg-red-500 " />
         <div className="px-4 lg:px-7 h-[50px] lg:h-16 relative flex justify-between items-center">
@@ -50,11 +51,8 @@ const Header = () => {
               </div>
             </Link> */}
           </div>
-          <div className='w-full'>
+          <div className='w-full flex items-center justify-center sm:justify-start'>
             <Link href="/">
-                {/* <span className="text-xl text-gray-700 dark:text-gray-300 font-bold cursor-pointer">
-                Cozy Homes
-                </span> */}
                 <a>
                   <LogoTitle/>
                 </a>
@@ -208,6 +206,7 @@ const Header = () => {
           <WalletProviderPopUp onClose={() => setWalletPopupOpen(false)} />
         </Drawer>
       </div>
+      </>
   )
 }
 

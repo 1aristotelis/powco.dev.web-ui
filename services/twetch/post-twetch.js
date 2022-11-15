@@ -17,7 +17,7 @@ const postTwetch1 = async (content, replyTxid, successCallback) => {
       type: "post",
       mapReply: mapReply,
       mapTwdata: "null",
-      mapComment: JSON.stringify({ origin: "cozy-homes.xyz" }),
+      mapComment: JSON.stringify({ origin: "askbitcoin.ai" }),
     },
   };
   if (

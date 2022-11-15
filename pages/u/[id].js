@@ -111,12 +111,7 @@ export default function UserPage({ userProfileCard }) {
 
   return (
     <>
-      {/* <Head>
-        <title>Cozy Homes - {userProfileCard.name}&apos;s Profile </title>
-        <meta name="description" content="Cozy spaces for Twetch people" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/app-icon.png"></link>
-      </Head>
+      {/* 
       <ThreeColumnLayout>
         <div className="col-span-12 lg:col-span-6 min-h-screen">
           <div className="">

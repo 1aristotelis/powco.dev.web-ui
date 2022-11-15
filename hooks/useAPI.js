@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-//const baseURL = "https://sapience.space";
+//const baseURL = "https://askbitcoin.ai";
 const baseURL = "http://localhost:5200";
 
 export const BASE = `${baseURL}/api/v1`;

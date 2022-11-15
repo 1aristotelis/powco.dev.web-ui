@@ -33,11 +33,12 @@ const TuneProvider = (props) => {
   const [filter, setFilter] = useLocalStorage(filterStorageKey, "all-time");
   const [sort, setSort] = useLocalStorage(sortStorageKey, "latest");
   const [startTimestamp, setStartTimestamp] = useState(filters[filter]);
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState("1F9E9");
   //const [endTimestamp, setEndTimestamp] = useState(moment.now().unix());
 
   useEffect(() => {
     switch (router.pathname) {
+      case "/":
       case "/intents":
         setTag("1F9E9");
         break;
@@ -87,5 +88,5 @@ export { TuneProvider, useTuning };
 // Utils
 //
 
-const filterStorageKey = "sapience__TuneProvider_filter";
-const sortStorageKey = "sapience__TuneProvider_sort";
+const filterStorageKey = "askbitcoin__TuneProvider_filter";
+const sortStorageKey = "askbitcoin__TuneProvider_sort";

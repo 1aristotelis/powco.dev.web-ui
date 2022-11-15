@@ -4,26 +4,29 @@ import { PanelLayout } from "../components";
 
 const Meet = () => {
   return (
-    <>
-      <Head>
-        <title>Cozy Homes - Discover</title>
-        <meta name="description" content="Cozy spaces for Twetch people" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/app-icon.png"></link>
-      </Head>
-      <PanelLayout>
-        <div className="h-full w-full flex items-center mx-auto">
-          <div className="grow" />
-          <div className="items-center w-[690px] h-[420px]  bg-gray-300 dark: bg-gray-800">
-            <div className="bg-black h-full w-full"></div>
-            <p className="p-5 bg-gray-100 dark:bg-gray-800 text-xl font-semibold">
-              Next PoW Co meeting in: 2 hours 18 min
-            </p>
+    <PanelLayout>
+      <div className="h-full w-full flex items-center mx-auto">
+        <div className="grow" />
+        <div className="items-center w-[690px] h-[420px]  bg-gray-300 dark: bg-gray-800">
+          <div className="bg-black h-full w-full flex justify-center items-center text-[100px]">
+            🚧
           </div>
-          <div className="grow" />
+          <p className="text-center p-5 bg-gray-100 dark:bg-gray-800 text-xl font-semibold">
+            Join us{" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://pow.co/daily-standup"
+              className="font-semibold text-blue-500 hover:underline cursor-pointer"
+            >
+              here
+            </a>
+            , 15min everyday at 6:pm UTC
+          </p>
         </div>
-      </PanelLayout>
-    </>
+        <div className="grow" />
+      </div>
+    </PanelLayout>
   );
 };
 
