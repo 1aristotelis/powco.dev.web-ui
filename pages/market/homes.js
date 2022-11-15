@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import { PanelLayout } from "../../components";
 import homes from "../../public/homes.jpeg";
 import blueprints from "../../public/blueprints.jpeg";
@@ -9,7 +8,7 @@ import blueprints from "../../public/blueprints.jpeg";
 export default function buyHomes() {
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Cozy Homes - Market</title>
         <meta name="description" content="Cozy spaces for Twetch people" />
         <link rel="icon" href="/favicon.ico" />
@@ -102,7 +101,7 @@ export default function buyHomes() {
                 </div>
               </div>
             </Link>
-            {/* <a
+            <a
               target="_blank"
               rel="noreferrer"
               //href="https://sapience.space"
@@ -125,10 +124,10 @@ export default function buyHomes() {
                   Visit
                 </button>
               </div>
-            </a> */}
+            </a>
           </div>
         </div>
-      </PanelLayout>
+      </PanelLayout> */}
     </>
   );
 }

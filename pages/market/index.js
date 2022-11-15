@@ -1,7 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import { PanelLayout } from "../../components";
 import architect from "../../public/architect.jpeg";
 import blueprints from "../../public/blueprints.jpeg";
@@ -9,7 +8,8 @@ import blueprints from "../../public/blueprints.jpeg";
 export default function Market() {
   return (
     <>
-      <Head>
+      market
+      {/* <Head>
         <title>Cozy Homes - Market</title>
         <meta name="description" content="Cozy spaces for Twetch people" />
         <link rel="icon" href="/favicon.ico" />
@@ -34,7 +34,7 @@ export default function Market() {
                 * If Twetch wins we all win, that&apos;s why 21.8% of all our
                 Cozy Homes NFT sales will go into funding Twetch Features and
                 develop our long-term partnership.
-              </p> */}
+              </p> 
             </div>
             <div className="flex grow justify-end ml-0 mt-5 lg:mt-0lg:ml-5">
               <img
@@ -47,7 +47,7 @@ export default function Market() {
             </div>
           </div>
           <div className="px-4 lg:px-0 grid mt-4 lg:mt-7 gap-4 lg:gap-7 grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
-            {/* <Link
+             <Link
               //target="_blank"
               //rel="noreferrer"
               //href="https://relayx.com/market/6385528ebd373613ec3135877ef095b3410c8a9f2d2b5f26757b81e9a6246a7a_o2"
@@ -73,7 +73,7 @@ export default function Market() {
                   </button>
                 </div>
               </div>
-            </Link> */}
+            </Link>
             <a
               target="_blank"
               rel="noreferrer"
@@ -134,7 +134,7 @@ export default function Market() {
             </a>
           </div>
         </div>
-      </PanelLayout>
+      </PanelLayout> */}
     </>
   );
 }
