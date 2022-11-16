@@ -8,14 +8,13 @@ import BoostButton from './BoostButton'
 import { useEffect } from 'react'
 
 
-const SimplePostCard = ({ post }) => {
+const DetailPostCard = ({ post }) => {
     const router = useRouter();
 
   const navigate = (e) => {
     e.stopPropagation();
-    if(post.answers){
-      router.push(`/intents/${post.tx_id}`)
-    }
+    return
+    router.push(`/t/${post.tx_id}`)
   } 
 
   const handleLike = (e) => {
@@ -50,7 +49,7 @@ const SimplePostCard = ({ post }) => {
                   </div>
                 <div className='grow'/>
                 <a target="_blank" rel="noreferrer" href={`https://whatsonchain.com/tx/${post.tx_id}`} className='text-xs leading-5 whitespace-nowrap text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
-                  {moment.unix(post.timestamp).fromNow()}
+                  {moment(post.timestamp).fromNow()}
                 </a>
                 {/* <a href={`https://twetch.com/t/${post.tx_id}`} target="_blank" rel="noreferrer" onClick={(e)=>e.stopPropagation()}>
                   <div className='flex items-center ml-4 h-5 w-5 text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
@@ -167,4 +166,4 @@ const SimplePostCard = ({ post }) => {
   }
 }
 
-export default SimplePostCard
+export default DetailPostCard

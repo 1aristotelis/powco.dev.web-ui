@@ -8,22 +8,19 @@ import BoostButton from './BoostButton'
 import { useEffect } from 'react'
 
 
-const SimplePostCard = ({ post }) => {
+const OnchainPostCard = ({ post }) => {
     const router = useRouter();
 
   const navigate = (e) => {
     e.stopPropagation();
-    if(post.answers){
-      router.push(`/intents/${post.tx_id}`)
-    }
+    return
+    router.push(`/t/${post.txid}`)
   } 
 
   const handleLike = (e) => {
 
   }
-  if (!post){
-    return <></>
-  } else {
+  
   return (
       <div onClick={navigate}  className='grid grid-cols-12 bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 hover:dark:bg-gray-500 mt-0.5 first:rounded-t-lg'>
         <div className='col-span-12'>
@@ -49,8 +46,8 @@ const SimplePostCard = ({ post }) => {
                     1anon
                   </div>
                 <div className='grow'/>
-                <a target="_blank" rel="noreferrer" href={`https://whatsonchain.com/tx/${post.tx_id}`} className='text-xs leading-5 whitespace-nowrap text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
-                  {moment.unix(post.timestamp).fromNow()}
+                <a target="_blank" rel="noreferrer" href={`https://whatsonchain.com/tx/${post.txid}`} className='text-xs leading-5 whitespace-nowrap text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
+                  {moment(post.createdAt).fromNow()}
                 </a>
                 {/* <a href={`https://twetch.com/t/${post.tx_id}`} target="_blank" rel="noreferrer" onClick={(e)=>e.stopPropagation()}>
                   <div className='flex items-center ml-4 h-5 w-5 text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
@@ -63,13 +60,7 @@ const SimplePostCard = ({ post }) => {
                   </div>
                 </a> */}
               </div>
-              {post.question !== undefined && (
-                <div className='relative flex flex-col bg-gray-300 dark:bg-gray-700 m-4 p-4 border-l-4 border-gray-500 '>
-                  <span className='w-9 h-9 flex items-center justify-center text-center absolute -top-4 -left-4 rounded-full bg-gray-100 dark:bg-gray-600'>🧩</span>
-                  <PostDescription bContent={post.question.content}/>
-                </div>
-              )}
-              <PostDescription bContent={post.content}/>
+              <PostDescription bContent={post.content.content}/>
               {/* <PostMedia files={JSON.parse(post.files)}/> */}
               <div className='ml-1'>
                 <div className='grid grid-cols-12 gap-4 w-full'>
@@ -146,7 +137,7 @@ const SimplePostCard = ({ post }) => {
                       {post.numBranches}
                     </p>
                   </div> */}
-                  <BoostButton tx_id={post.tx_id} difficulty={post.difficulty !== undefined ? post.difficulty : 0}/>
+                  <BoostButton tx_id={post.tx_id} difficulty={0}/>
                   {/* <div className='col-span-3 flex group items-center w-fit relative'>
                     <svg
                       viewBox="0 0 40 40"
@@ -165,6 +156,6 @@ const SimplePostCard = ({ post }) => {
       </div>
     )
   }
-}
 
-export default SimplePostCard
+
+export default OnchainPostCard

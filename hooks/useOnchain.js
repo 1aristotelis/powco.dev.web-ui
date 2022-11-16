@@ -1,9 +1,11 @@
 import useSWR from "swr";
 
-const baseURL = "https://askbitcoin.ai";
+const baseURL = "https://onchain.sv";
 //const baseURL = "http://localhost:5200";
 
 export const BASE = `${baseURL}/api/v1`;
+
+const askbitcoin_onchain_app_id = "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN";
 
 import axios from "../utils/axios";
 
@@ -26,14 +28,18 @@ export function fetcher(params) {
   });
 }
 
-export function useAPI(path, queryParams) {
+export function useOnchain(path, queryParams) {
+  //https://onchain.sv/api/v1/events?app=1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN&type=question
   let params = queryParams || "";
   let {
     data,
     error,
     mutate: refresh,
     isValidating: loading,
-  } = useSWR(`${BASE}${path}${params}`, fetcher);
+  } = useSWR(
+    `${BASE}${path}?app=${askbitcoin_onchain_app_id}&${params}`,
+    fetcher
+  );
 
   return { data, error, refresh, loading };
 }

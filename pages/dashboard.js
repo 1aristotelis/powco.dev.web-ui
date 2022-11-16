@@ -8,6 +8,7 @@ import {
   Placeholder,
   Composer,
   PostCard,
+  OnchainPostCard,
 } from "../components";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getLocalFeed, getLocalFeedPagination } from "../services";
@@ -24,24 +25,23 @@ function ago(period) {
   return moment().subtract(1, period).unix() * 1000;
 }
 
-const Dashboard = () => {
+const Dashboard = ({ data, error, loading }) => {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
   const { authenticated } = useBitcoin();
   const { startTimestamp, tag, setTag } = useTuning();
 
-  let { data, error, refresh, loading } = useAPI(
-    `/posts?start_timestamp=${startTimestamp}&tag=${tag}`
-  );
-
   useEffect(() => {
     if (data) {
-      setPosts(data.posts);
+      setPosts(data.posts || data.questions || data.answers || data.events);
     } else {
-      !error && !loading && data && setPosts(data.posts);
+      !error &&
+        !loading &&
+        data &&
+        setPosts(data.posts || data.questions || data.answers || data.events);
     }
     console.log(data, loading, error);
-  }, [data, router, startTimestamp]);
+  }, [data, posts, router, startTimestamp]);
   /* let {
     data: recent,
     error: recentError,
@@ -149,10 +149,13 @@ const Dashboard = () => {
               </InfiniteScroll> */}
             {!loading &&
               !error &&
-              posts.map((post) => (
-                //<QuestionCard key={post.tx_id} post={post} />
-                <SimplePostCard key={post.tx_id} post={post} />
-              ))}
+              posts.map((post) => {
+                if (post.txid) {
+                  return <OnchainPostCard key={post.txid} post={post} />;
+                } else {
+                  return <SimplePostCard key={post.tx_id} post={post} />;
+                }
+              })}
             {/* {!recentLoading &&
                 !recentError &&
                 recent.questions.map((post) => (

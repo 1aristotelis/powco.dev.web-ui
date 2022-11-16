@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { useBitcoin } from '../context/BitcoinContext'
 import axios from 'axios'
 
-const BoostButton = ({ tx_id }) => {
+const BoostButton = ({ tx_id, difficulty }) => {
   const { boost } = useBitcoin()
 
 const handleBoost = async (e) => {
@@ -64,7 +64,7 @@ const handleBoost = async (e) => {
     }
 }
   return (
-    <div onClick={handleBoost} className='col-span-3 flex group items-center w-fit relative'>
+    <div onClick={handleBoost} className='col-span-4 flex group items-center w-fit relative'>
         <svg viewBox='0 0 65 65' className='min-h-[69px] min-w-[69px] stroke-1 stroke-gray-500 dark:stroke-gray-300 rounded-full group-hover:stroke-blue-500'>
             <path
                 d="M40.1719 32.6561C40.1719 35.6054 38.5079 38.1645 36.0692 39.4499C35.002 40.0122 33.7855 36.2423 32.4945 36.2423C31.1288 36.2423 29.8492 40.0696 28.7418 39.4499C26.4007 38.1359 24.8228 35.5308 24.8228 32.6561C24.8228 28.4214 28.2598 24.9844 32.4945 24.9844C36.7291 24.9844 40.1719 28.4157 40.1719 32.6561Z"
@@ -73,8 +73,7 @@ const handleBoost = async (e) => {
             ></path>
         </svg>
         <p className="text-gray-500 dark:text-gray-300 group-hover:text-blue-500 -ml-3">
-            {/* {post.answers.length} */}
-            0
+             {difficulty.toFixed(3)} 
         </p>
     </div>
    

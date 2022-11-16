@@ -5,6 +5,8 @@ export { default as PanelLayout } from "./PanelLayout";
 export { default as Placeholder } from "./Placeholder";
 export { default as PostCard } from "./PostCard";
 export { default as SimplePostCard } from "./SimplePostCard";
+export { default as OnchainPostCard } from "./OnchainPostCard";
+export { default as DetailPostCard } from "./DetailPostCard";
 export { default as QuestionCard } from "./QuestionCard";
 export { default as AnswerCard } from "./AnswerCard";
 export { default as MessageCard } from "./MessageCard";
