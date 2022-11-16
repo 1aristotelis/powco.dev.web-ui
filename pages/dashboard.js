@@ -55,13 +55,16 @@ const Dashboard = ({ data, error, loading }) => {
       case "":
         router.push("/", undefined, { shallow: true });
         break;
-      case "1F9E9":
+      //case "1F9E9":
+      case "question":
         router.push("/intents", undefined, { shallow: true });
         break;
-      case "1F4A1":
+      //case "1F4A1":
+      case "answer":
         router.push("/methods", undefined, { shallow: true });
         break;
-      case "1F48E":
+      //case "1F48E":
+      case "project":
         router.push("/projects", undefined, { shallow: true });
         break;
       case "test":
@@ -92,9 +95,11 @@ const Dashboard = ({ data, error, loading }) => {
                 All 🦚
               </div> */}
               <div
-                onClick={() => handleChangeTab("1F9E9")}
+                //onClick={() => handleChangeTab("1F9E9")}
+                onClick={() => handleChangeTab("question")}
                 className={
-                  tag === "1F9E9"
+                  //tag === "1F9E9"
+                  tag === "question"
                     ? "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-600 font-medium mr-2 cursor-pointer rounded-md whitespace-nowrap"
                     : "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 font-normal mr-2 cursor-pointer rounded-md whitespace-nowrap"
                 }
@@ -102,9 +107,11 @@ const Dashboard = ({ data, error, loading }) => {
                 Puzzles 🧩
               </div>
               <div
-                onClick={() => handleChangeTab("1F4A1")}
+                //onClick={() => handleChangeTab("1F4A1")}
+                onClick={() => handleChangeTab("answer")}
                 className={
-                  tag === "1F4A1"
+                  //tag === "1F4A1"
+                  tag === "answer"
                     ? "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-600 font-medium mr-2 cursor-pointer rounded-md whitespace-nowrap"
                     : "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 font-normal mr-2 cursor-pointer rounded-md whitespace-nowrap"
                 }
@@ -112,9 +119,11 @@ const Dashboard = ({ data, error, loading }) => {
                 Ideas 💡
               </div>
               <div
-                onClick={() => handleChangeTab("1F48E")}
+                //onClick={() => handleChangeTab("1F48E")}
+                onClick={() => handleChangeTab("project")}
                 className={
-                  tag === "1F48E"
+                  //tag === "1F48E"
+                  tag === "project"
                     ? "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-600 font-medium mr-2 cursor-pointer rounded-md whitespace-nowrap"
                     : "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 font-normal mr-2 cursor-pointer rounded-md whitespace-nowrap"
                 }

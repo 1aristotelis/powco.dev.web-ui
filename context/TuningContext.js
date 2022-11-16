@@ -33,26 +33,29 @@ const TuneProvider = (props) => {
   const [filter, setFilter] = useLocalStorage(filterStorageKey, "all-time");
   const [sort, setSort] = useLocalStorage(sortStorageKey, "latest");
   const [startTimestamp, setStartTimestamp] = useState(filters[filter]);
-  const [tag, setTag] = useState("1F9E9");
+  const [tag, setTag] = useState("question");
   //const [endTimestamp, setEndTimestamp] = useState(moment.now().unix());
 
   useEffect(() => {
     switch (router.pathname) {
       case "/":
       case "/intents":
-        setTag("1F9E9");
+        //setTag("1F9E9");
+        setTag("question");
         break;
       case "/methods":
-        setTag("1F4A1");
+        //setTag("1F4A1");
+        setTag("answer");
         break;
       case "/projects":
-        setTag("1F48E");
+        //setTag("1F48E");
+        setTag("project");
         break;
       case "/test":
         setTag("test");
         break;
       default:
-        setTag("");
+        setTag("question");
     }
 
     setStartTimestamp(filters[filter]);

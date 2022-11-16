@@ -65,8 +65,8 @@ const TwetchProvider = (props) => {
   };
 
   const twetchSend = useCallback(
-    async (output, fee) => {
-      console.log(output);
+    async (outputs) => {
+      /* console.log(output);
       let outputs = [
         {
           args: output,
@@ -74,7 +74,7 @@ const TwetchProvider = (props) => {
           sats: fee,
         },
       ];
-
+ */
       let resp = await window.bitcoin.abi({
         contract: "payment",
         outputs,

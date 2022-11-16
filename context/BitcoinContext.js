@@ -77,6 +77,7 @@ const BitcoinProvider = (props) => {
         "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN",
         tag,
         JSON.stringify({
+          question_tx_id: reply_tx,
           reply_tx_id: reply_tx,
           content,
         }),
@@ -86,7 +87,7 @@ const BitcoinProvider = (props) => {
           outputs = [
             {
               args: opReturn,
-              to: "powco@relayx.io",
+              to: "askbitcoin@relayx.io",
               sats: 2180,
             },
           ];
@@ -98,7 +99,7 @@ const BitcoinProvider = (props) => {
               opReturn,
               currency: "BSV",
               amount: 2180 * 1e-8,
-              to: "powco@relayx.io",
+              to: "askbitcoin@relayx.io",
             },
           ];
           resp = await relaySend(outputs);
