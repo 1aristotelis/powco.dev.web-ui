@@ -26,7 +26,7 @@ const TuningProviderPopUp = ({ onClose }) => {
                     🌊 setting up the vibes 🌊 
                     </p>
                   </div>
-                  <TuningPanel/>
+                  <TuningPanel closeAction={onClose}/>
                 </div>
                 <div
                   onClick={onClose}

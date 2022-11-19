@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Link from 'next/link';
 import { useTheme } from "next-themes";
 import { useRelay } from '../context/RelayContext';
-import { UserIcon } from '.';
+import { UserIcon, WalletProviderPopUp, Drawer } from '.';
 import LogoTitle from './LogoTitle';
 import { useBitcoin } from '../context/BitcoinContext';
 
@@ -10,6 +10,7 @@ import { useBitcoin } from '../context/BitcoinContext';
 const SideBarDrawer = () => {
     const { theme, setTheme } = useTheme()
     const { authenticated, avatar, paymail } = useBitcoin()
+    const [walletPopupOpen, setWalletPopupOpen] = useState(false);
 
     const toggleTheme =  () => {
         if(theme==="dark"){
@@ -46,11 +47,21 @@ const SideBarDrawer = () => {
                     </svg>
                 </div>
             </div>):(         
-                <div className='flex w-full px-5'>
-                <Link href="/">
-                    <LogoTitle/>
-                </Link>
-              </div>
+                <div className='flex flex-col w-full px-5'>
+                    <Link href="/">
+                        <LogoTitle/>
+                    </Link>
+                    <div
+                        onClick={()=>setWalletPopupOpen(true)}
+                        //onClick={authenticate}
+                        className='flex mt-4 transition duration-500 transform hover:-translate-y-1 h-8 text-base leading-4 text-white font-semibold border-none rounded-md bg-gradient-to-tr from-blue-500 to-blue-600  justify-center items-center cursor-pointer relative'>
+                        <svg viewBox="0 0 16 14" fill="#000" width="16" height="14">
+                        <path d="M2.16197 13.2675H13.838C15.2698 13.2675 16 12.5445 16 11.1271V2.86576C16 1.45546 15.2698 0.732422 13.838 0.732422H2.16197C0.730201 0.732422 0 1.44831 0 2.86576V11.1271C0 12.5445 0.730201 13.2675 2.16197 13.2675ZM1.18121 2.9445C1.18121 2.25725 1.54631 1.91363 2.20492 1.91363H13.7951C14.4465 1.91363 14.8188 2.25725 14.8188 2.9445V3.9539H1.18121V2.9445ZM2.20492 12.0863C1.54631 12.0863 1.18121 11.7356 1.18121 11.0483V5.50737H14.8188V11.0483C14.8188 11.7356 14.4465 12.0863 13.7951 12.0863H2.20492Z" fill="white">
+                        </path>
+                        </svg>
+                    <span className='ml-4'>Connect</span>
+                </div>
+                </div>
             )}
             <div className='flex flex-col w-full'>
                 <Link href="/">
@@ -156,6 +167,13 @@ const SideBarDrawer = () => {
                 </Link> */}
             </div>}
         </div>
+        <Drawer
+            selector="#walletProviderPopupControler"
+            isOpen={walletPopupOpen}
+            onClose={() => setWalletPopupOpen(false)}
+        >
+            <WalletProviderPopUp onClose={() => setWalletPopupOpen(false)}/>
+        </Drawer>
     </div>
   )
 }
