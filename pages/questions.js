@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dashboard from "./dashboard";
 import { useAPI } from "../hooks/useAPI";
 import { useTuning } from "../context/TuningContext";
 
 const Questions = () => {
+  const [recentQuestions, setRecentQuestions] = useState([]);
   const { startTimestamp } = useTuning();
   let { data, error, refresh, loading } = useAPI(
     `/questions?start_timestamp=${startTimestamp}`
   );
-  return <Dashboard data={data} error={error} loading={loading} />;
+  let { data: recent } = useAPI("/recent/questions?limit=100");
+
+  useEffect(() => {
+    setRecentQuestions(recent?.questions);
+  }, [recent]);
+
+  return (
+    <Dashboard
+      data={data}
+      recent={recentQuestions}
+      error={error}
+      loading={loading}
+    />
+  );
 };
 
 export default Questions;

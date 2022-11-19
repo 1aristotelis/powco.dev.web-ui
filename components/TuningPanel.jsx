@@ -5,8 +5,10 @@ const TuningPanel = ({ closeAction }) => {
     const { filter, setFilter, sort, setSort } = useTuning()
 
     const handleChange = (e) => {
-      setFilter(e.target.value); 
-      closeAction()     
+      setFilter(e.target.value);
+      if (typeof closeAction == Function){
+        closeAction()     
+      } 
     }
   return (
     <div className='flex items-center w-full'>

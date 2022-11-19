@@ -50,7 +50,7 @@ const SimplePostCard = ({ post }) => {
                   </div>
                 <div className='grow'/>
                 <a target="_blank" rel="noreferrer" href={`https://whatsonchain.com/tx/${post.tx_id}`} className='text-xs leading-5 whitespace-nowrap text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
-                  {moment.unix(post.timestamp).fromNow()}
+                  {moment(post.createdAt).fromNow()}
                 </a>
                 {/* <a href={`https://twetch.com/t/${post.tx_id}`} target="_blank" rel="noreferrer" onClick={(e)=>e.stopPropagation()}>
                   <div className='flex items-center ml-4 h-5 w-5 text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>

@@ -25,7 +25,7 @@ function ago(period) {
   return moment().subtract(1, period).unix() * 1000;
 }
 
-const Dashboard = ({ data, error, loading }) => {
+const Dashboard = ({ data, recent, error, loading }) => {
   const [posts, setPosts] = useState([]);
   const router = useRouter();
   const { authenticated } = useBitcoin();
@@ -158,6 +158,7 @@ const Dashboard = ({ data, error, loading }) => {
                 refreshFunction={refresh}
               >
               </InfiniteScroll> */}
+            {loading && <Loader />}
             {!loading &&
               !error &&
               posts.map((post) => {
@@ -167,6 +168,16 @@ const Dashboard = ({ data, error, loading }) => {
                   return <SimplePostCard key={post.tx_id} post={post} />;
                 }
               })}
+            {recent && (
+              <div className="flex py-5 items-center">
+                <div className="grow border border-bottom border-gray-600 dark:border-gray-300" />
+                <div className="mx-5 font-semibold text-lg">Recent</div>
+                <div className="grow border border-bottom border-gray-600 dark:border-gray-300" />
+              </div>
+            )}
+            {recent?.map((post) => (
+              <SimplePostCard key={post.tx_id} post={post} />
+            ))}
             {/* {!recentLoading &&
                 !recentError &&
                 recent.questions.map((post) => (
