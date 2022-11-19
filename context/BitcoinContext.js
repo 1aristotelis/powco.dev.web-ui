@@ -70,18 +70,28 @@ const BitcoinProvider = (props) => {
   };
 
   const send = useCallback(
-    async (content, tag, reply_tx) => {
-      let resp, outputs;
-      let opReturn = [
-        "onchain",
-        "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN",
-        tag,
-        JSON.stringify({
-          question_tx_id: reply_tx,
-          reply_tx_id: reply_tx,
-          content,
-        }),
-      ];
+    async (content, reply_tx) => {
+      let resp, outputs, opReturn;
+      if (reply_tx) {
+        opReturn = [
+          "onchain",
+          "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN",
+          "answer",
+          JSON.stringify({
+            question_tx_id: reply_tx,
+            content,
+          }),
+        ];
+      } else {
+        opReturn = [
+          "onchain",
+          "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN",
+          "question",
+          JSON.stringify({
+            content,
+          }),
+        ];
+      }
       switch (wallet) {
         case "twetch":
           outputs = [

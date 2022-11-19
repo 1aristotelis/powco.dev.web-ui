@@ -39,11 +39,11 @@ const TuneProvider = (props) => {
   useEffect(() => {
     switch (router.pathname) {
       case "/":
-      case "/intents":
+      case "/questions":
         //setTag("1F9E9");
         setTag("question");
         break;
-      case "/methods":
+      case "/answers":
         //setTag("1F4A1");
         setTag("answer");
         break;

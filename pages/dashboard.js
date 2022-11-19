@@ -57,11 +57,11 @@ const Dashboard = ({ data, error, loading }) => {
         break;
       //case "1F9E9":
       case "question":
-        router.push("/intents", undefined, { shallow: true });
+        router.push("/questions", undefined, { shallow: true });
         break;
       //case "1F4A1":
       case "answer":
-        router.push("/methods", undefined, { shallow: true });
+        router.push("/answers", undefined, { shallow: true });
         break;
       //case "1F48E":
       case "project":
@@ -78,10 +78,12 @@ const Dashboard = ({ data, error, loading }) => {
   return (
     <ThreeColumnLayout>
       <div className="col-span-12 lg:col-span-6 min-h-screen">
-        <div className="hidden lg:block mt-8">
-          <Composer />
-        </div>
-        <div className="px-1 sm:px-4 mt-2">
+        {tag !== "answer" && (
+          <div className="hidden lg:block mt-8">
+            <Composer />
+          </div>
+        )}
+        <div className="px-4 mt-2">
           <div className="flex my-6">
             <div className="flex">
               {/* <div
@@ -104,7 +106,7 @@ const Dashboard = ({ data, error, loading }) => {
                     : "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 font-normal mr-2 cursor-pointer rounded-md whitespace-nowrap"
                 }
               >
-                Puzzles 🧩
+                Questions
               </div>
               <div
                 //onClick={() => handleChangeTab("1F4A1")}
@@ -116,9 +118,9 @@ const Dashboard = ({ data, error, loading }) => {
                     : "text-sm leading-4 py-2 px-2 sm:px-3 text-gray-700 dark:text-gray-300 font-normal mr-2 cursor-pointer rounded-md whitespace-nowrap"
                 }
               >
-                Ideas 💡
+                Answers
               </div>
-              <div
+              {/* <div
                 //onClick={() => handleChangeTab("1F48E")}
                 onClick={() => handleChangeTab("project")}
                 className={
@@ -129,7 +131,7 @@ const Dashboard = ({ data, error, loading }) => {
                 }
               >
                 Experiments 💎
-              </div>
+              </div> */}
               {/* <div
                   onClick={() => handleChangeTab("test")}
                   className={

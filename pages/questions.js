@@ -3,12 +3,12 @@ import Dashboard from "./dashboard";
 import { useAPI } from "../hooks/useAPI";
 import { useTuning } from "../context/TuningContext";
 
-const Methods = () => {
+const Questions = () => {
   const { startTimestamp } = useTuning();
   let { data, error, refresh, loading } = useAPI(
-    `/answers?start_timestamp=${startTimestamp}`
+    `/questions?start_timestamp=${startTimestamp}`
   );
   return <Dashboard data={data} error={error} loading={loading} />;
 };
 
-export default Methods;
+export default Questions;

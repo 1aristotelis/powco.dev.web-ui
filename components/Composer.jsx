@@ -45,7 +45,7 @@ const Composer = ({ props, reply_tx }) => {
         switch (tag){
           //case "1F9E9":
             case "question":
-            setPlaceholder("What problem do you want to solve?")
+            setPlaceholder("Ask Bitcoin a question")
             break;
           //case "1F4A1":
             case "answer":
@@ -67,7 +67,7 @@ const Composer = ({ props, reply_tx }) => {
       e.preventDefault()
       const content = value[0].children[0].text;
       
-      let resp = await toast.promise(send(content, tag, reply_tx), {
+      let resp = await toast.promise(send(content, reply_tx), {
         pending: 'Transaction is pending 🚀',
         success: 'Transaction successful 🥳',
         error: 'Transaction rejected 🤯'
@@ -131,28 +131,30 @@ const Composer = ({ props, reply_tx }) => {
       </Slate>
       {twetchPost && <div className='mt-2 border rounded-lg border-gray-300 dark:border-gray-700'><PostCard post={twetchPost}/></div>}
       <div className="flex items-center mt-2">
-        {router.pathname === "/compose" && <div className='rounded-full bg-gray-300 dark:bg-gray-700 py-2 px-4 flex items-center'>
-          {/* <div className="flex items-center mr-2">
-              <input onChange={(e)=>setTag(e.target.value)}  checked={tag === ""} id="problem-tag" type="radio" value="" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
-              <label htmlFor="problem-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"></label>
-          </div> */}
-          <div className="flex items-center mr-2">
-              <input onChange={(e)=>setTag(e.target.value)}  checked={tag === "question"} id="problem-tag" type="radio" value="question" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
-              <label htmlFor="problem-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">🧩</label>
-          </div>
-          <div className="flex items-center mr-2">
-              <input onChange={(e)=>setTag(e.target.value)} checked={tag === "answer" } id="idea-tag" type="radio" value="answer" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
-              <label htmlFor="idea-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">💡</label>
-          </div>
-          <div className="flex items-center">
-              <input onChange={(e)=>setTag(e.target.value)} checked={tag === "project"} id="project-tag" type="radio" value="project" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
-              <label htmlFor="project-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">💎</label>
-          </div>
-          {/* <div className="ml-2 flex items-center">
-              <input onChange={(e)=>setTag(e.target.value)} checked={tag === "test"} id="test-tag" type="radio" value="test" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
-              <label htmlFor="project-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">🐛</label>
-          </div> */}
-        </div>}
+        {/* <>
+          {router.pathname === "/compose" && <div className='rounded-full bg-gray-300 dark:bg-gray-700 py-2 px-4 flex items-center'>
+            <div className="flex items-center mr-2">
+                <input onChange={(e)=>setTag(e.target.value)}  checked={tag === ""} id="problem-tag" type="radio" value="" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
+                <label htmlFor="problem-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer"></label>
+            </div> 
+            <div className="flex items-center mr-2">
+                <input onChange={(e)=>setTag(e.target.value)}  checked={tag === "question"} id="problem-tag" type="radio" value="question" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
+                <label htmlFor="problem-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">🧩</label>
+            </div>
+            <div className="flex items-center mr-2">
+                <input onChange={(e)=>setTag(e.target.value)} checked={tag === "answer" } id="idea-tag" type="radio" value="answer" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
+                <label htmlFor="idea-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">💡</label>
+            </div>
+            <div className="flex items-center">
+                <input onChange={(e)=>setTag(e.target.value)} checked={tag === "project"} id="project-tag" type="radio" value="project" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
+                <label htmlFor="project-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">💎</label>
+            </div>
+            <div className="ml-2 flex items-center">
+                <input onChange={(e)=>setTag(e.target.value)} checked={tag === "test"} id="test-tag" type="radio" value="test" name="radio-tag" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"/>
+                <label htmlFor="project-tag" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 cursor-pointer">🐛</label>
+            </div> 
+          </div>}
+         </> */}
         <div className='grow'/>
         <button
           onClick={handlePost}

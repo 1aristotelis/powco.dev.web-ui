@@ -3,12 +3,12 @@ import Dashboard from "./dashboard";
 import { useAPI } from "../hooks/useAPI";
 import { useTuning } from "../context/TuningContext";
 
-const Intents = () => {
+const Answers = () => {
   const { startTimestamp } = useTuning();
   let { data, error, refresh, loading } = useAPI(
-    `/questions?start_timestamp=${startTimestamp}`
+    `/answers?start_timestamp=${startTimestamp}`
   );
   return <Dashboard data={data} error={error} loading={loading} />;
 };
 
-export default Intents;
+export default Answers;
