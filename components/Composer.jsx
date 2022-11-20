@@ -25,7 +25,7 @@ import { useBitcoin } from '../context/BitcoinContext';
 
 
 
-const Composer = ({ props, reply_tx }) => {
+const Composer = ({ reply_tx, successAction }) => {
     const router = useRouter()
     const [twetchPost, setTwetchPost] = useState()
     const [placeholder, setPlaceholder] = useState("What's the latest?")
@@ -80,9 +80,106 @@ const Composer = ({ props, reply_tx }) => {
       draggable: true,
       progress: undefined,
       theme: "light",
-      })
-      console.log(resp)
+      });
+      console.log(resp);
       setValue(blankSlateValue)
+
+      let rawTx = resp.rawTx || resp.rawtx;
+      let txid = resp.txid;
+
+      (async () => {
+        try {
+          let { data: postTransactionResponse } = await axios.post('https://askbitcoin.ai/api/v1/transactions', {
+            transaction: rawTx
+          });
+
+          console.log('askbitcoin_postTransactionResponse', postTransactionResponse);
+        } catch (error) {
+          console.error('postTransactionResponse', error);
+        }
+      })();
+
+      (async () => {
+        try {
+          let { data: postTransactionResponse } = await axios.post('https://pow.co/api/v1/transactions', {
+            transaction: rawTx
+          });
+
+          console.log('powco_post_transaction_response', postTransactionResponse);
+        } catch (error) {
+          console.error('powco_post_transaction_response', error);
+        }
+      })();
+
+
+      (async () => {
+        try {
+          let { data: postTransactionResponse } = await axios.post('https://pow.co/api/v1/jobs', {
+            transaction: rawTx
+          });
+
+          console.log('powco_post_transaction_response', postTransactionResponse);
+        } catch (error) {
+          console.error('powco_post_transaction_response', error);
+        }
+      })();
+
+      if (reply_tx){
+
+        (async () => {
+          try {
+            let { data: postTransactionResponse } = await axios.post('https://askbitcoin.ai/api/v1/answers', {
+              transaction: rawTx
+            });
+
+            console.log('api.answers.post.response', postTransactionResponse);
+          } catch (error) {
+            console.error('api.answers.post.response', error);
+          }
+        })();
+
+        (async () => {
+          try {
+
+            await axios.get(`https://askbitcoin.ai/api/v1/answers/${txid}`);
+
+            router.push(`/answers/${txid}`)
+
+          } catch (error) {
+
+            console.error('api.answers.show.error', error);
+          }
+        })();
+
+      } else {
+        
+        (async () => {
+          try {
+            let { data: postTransactionResponse } = await axios.post('https://askbitcoin.ai/api/v1/questions', {
+              transaction: rawTx
+            });
+
+            console.log('api.questions.post.response', postTransactionResponse);
+
+          } catch (error) {
+            console.error('api.questions.post.response', error);
+          }
+        })();
+
+        (async () => {
+          try {
+
+            await axios.get(`https://askbitcoin.ai/api/v1/questions/${txid}`);
+
+            router.push(`/questions/${txid}`)
+
+          } catch (error) {
+
+            console.error('api.questions.show.error', error);
+          }
+        })();
+
+      }
     };
 
     const handleChange = async (newValue) => {

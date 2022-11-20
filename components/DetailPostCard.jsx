@@ -13,8 +13,11 @@ const DetailPostCard = ({ post }) => {
 
   const navigate = (e) => {
     e.stopPropagation();
-    return
-    router.push(`/t/${post.tx_id}`)
+    if(post.answers){
+      router.push(`/questions/${post.tx_id}`)
+    } else {
+      router.push(`/answers/${post.tx_id}`)
+    }
   } 
 
   const handleLike = (e) => {
@@ -49,7 +52,7 @@ const DetailPostCard = ({ post }) => {
                   </div>
                 <div className='grow'/>
                 <a target="_blank" rel="noreferrer" href={`https://whatsonchain.com/tx/${post.tx_id}`} className='text-xs leading-5 whitespace-nowrap text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
-                  {moment(post.timestamp).fromNow()}
+                  {moment(post.createdAt).fromNow()}
                 </a>
                 {/* <a href={`https://twetch.com/t/${post.tx_id}`} target="_blank" rel="noreferrer" onClick={(e)=>e.stopPropagation()}>
                   <div className='flex items-center ml-4 h-5 w-5 text-gray-500 dark:text-gray-300 hover:text-gray-700 hover:dark:text-gray-500'>
@@ -63,7 +66,10 @@ const DetailPostCard = ({ post }) => {
                 </a> */}
               </div>
               {post.question !== undefined && (
-                <div className='relative flex flex-col bg-gray-300 dark:bg-gray-700 m-4 p-4 border-l-4 border-gray-500 '>
+                <div onClick={(e) => {
+                  e.stopPropagation();
+                  router.push(`/questions/${post.question.tx_id}`)
+                }} className='cursor-pointer relative flex flex-col bg-gray-300 dark:bg-gray-700 m-4 p-4 border-l-4 border-gray-500 '>
                   <span className='w-9 h-9 flex items-center justify-center text-center absolute -top-4 -left-4 rounded-full bg-gray-100 dark:bg-gray-600'>🧩</span>
                   <PostDescription bContent={post.question.content}/>
                 </div>

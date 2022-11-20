@@ -9,6 +9,7 @@ import {
   Composer,
   SimplePostCard,
   DetailPostCard,
+  Loader,
 } from "../../components";
 import { useRouter } from "next/router";
 import { useTuning } from "../../context/TuningContext";
@@ -72,6 +73,7 @@ export default function DetailPage() {
     <ThreeColumnLayout>
       <div className="col-span-12 lg:col-span-6 min-h-screen pb-20">
         <div className="mt-4 lg:mt-10">
+          {loading && <Loader />}
           {!loading && !error && <DetailPostCard post={post} />}
           {!loading && !error && (
             <div className="bg-gray-100 dark:bg-gray-600 rounded-b-lg py-3 px-4 mb-1">

@@ -14,7 +14,7 @@ const SidebarTuning = () => {
         <p className='text-lg font-bold text-gray-900 dark:text-white'>Tuning Panel</p>
       </div>
       <div className='flex flex-col p-2'>
-        <TuningPanel/>
+        <TuningPanel closeAction={null}/>
       </div>
     </div>
   )

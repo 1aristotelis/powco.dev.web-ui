@@ -66,6 +66,7 @@ const TwetchProvider = (props) => {
 
   const twetchSend = useCallback(
     async (outputs) => {
+      console.log("twetch.send.outputs", outputs);
       /* console.log(output);
       let outputs = [
         {

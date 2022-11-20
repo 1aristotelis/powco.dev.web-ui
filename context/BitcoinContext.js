@@ -104,20 +104,19 @@ const BitcoinProvider = (props) => {
           resp = await twetchSend(outputs);
           break;
         case "relayx":
-          outputs = [
-            {
-              opReturn,
-              currency: "BSV",
-              amount: 2180 * 1e-8,
-              to: "askbitcoin@relayx.io",
-            },
-          ];
+          outputs = {
+            opReturn,
+            currency: "BSV",
+            amount: 2180 * 1e-8,
+            to: "askbitcoin@relayx.io",
+          };
           resp = await relaySend(outputs);
           break;
         default:
           console.log("no wallet selected");
           return null;
       }
+
       return resp;
     },
     [wallet]
@@ -147,7 +146,7 @@ const BitcoinProvider = (props) => {
               "18pPQigu7j69ioDcUG9dACE1iAN9nCfowr",
               "job",
               JSON.stringify({
-                index: 0,
+                index: 1,
               }),
             ],
             to: script.toASM(),
