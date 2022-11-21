@@ -20,7 +20,11 @@ const handleBoost = async (e) => {
       let result = await toast.promise(boost(tx_id, value, currency), {
         pending: 'Transaction is pending 🚀',
         success: 'Transaction successful 🥳',
-        error: 'Transaction rejected 🤯'
+        error: {
+          render({data}){
+            return `${data}`
+          }
+        }
       }, {
       position: "top-center",
       autoClose: 5000,

@@ -76,11 +76,16 @@ const TwetchProvider = (props) => {
         },
       ];
  */
-      let resp = await window.bitcoin.abi({
-        contract: "payment",
-        outputs,
-      });
-      return resp;
+      try {
+        let resp = await window.bitcoin.abi({
+          contract: "payment",
+          outputs,
+        });
+        return resp;
+      } catch (error) {
+        console.log("twetch.send.error", error);
+        throw new Error(error);
+      }
     },
     [twetch]
   );

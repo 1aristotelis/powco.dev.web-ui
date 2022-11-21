@@ -33,7 +33,7 @@ export function useAPI(path, queryParams) {
     error,
     mutate: refresh,
     isValidating: loading,
-  } = useSWR(`${BASE}${path}${params}`, fetcher);
+  } = useSWR(`${BASE}${path}${params}`, fetcher, { revalidateOnFocus: false });
 
   return { data, error, refresh, loading };
 }

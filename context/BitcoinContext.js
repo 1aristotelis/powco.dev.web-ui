@@ -56,21 +56,23 @@ const BitcoinProvider = (props) => {
     }
   }, [tokenTwetchAuth, twetchPaymail, relayPaymail, wallet]);
 
-  const authenticate = async () => {
-    switch (wallet) {
-      case "twetch":
-        twetchAuthenticate();
-        break;
-      case "relayx":
-        relayAuthenticate();
-        break;
-      default:
-        console.log("no wallet selected");
+  const authenticate = async (selectedWallet) => {
+    if (selectedWallet === "twetch") {
+      setWallet(selectedWallet);
+      await twetchAuthenticate();
+    }
+
+    if (selectedWallet === "relayx") {
+      setWallet(selectedWallet);
+      await relayAuthenticate();
     }
   };
 
   const send = useCallback(
     async (content, reply_tx) => {
+      if (!wallet) {
+        throw new Error("Please sign in");
+      }
       let resp, outputs, opReturn;
       if (reply_tx) {
         opReturn = [
@@ -102,7 +104,7 @@ const BitcoinProvider = (props) => {
             },
           ];
           resp = await twetchSend(outputs);
-          break;
+          return resp;
         case "relayx":
           outputs = {
             opReturn,
@@ -111,18 +113,19 @@ const BitcoinProvider = (props) => {
             to: "askbitcoin@relayx.io",
           };
           resp = await relaySend(outputs);
-          break;
+          return resp;
         default:
           console.log("no wallet selected");
           return null;
       }
-
-      return resp;
     },
     [wallet]
   );
 
   const boost = useCallback(async (txid, value, currency) => {
+    if (!wallet) {
+      throw new Error("Please, sign in");
+    }
     let resp, outputs;
     const url = `https://askbitcoin.ai/api/v1/boostpow/${txid}/new?value=${value}&currency=${currency}`;
 
@@ -158,7 +161,7 @@ const BitcoinProvider = (props) => {
           }, */
         ];
         resp = await twetchSend(outputs);
-        break;
+        return resp;
       case "relayx":
         outputs = {
           opReturn: [
@@ -179,12 +182,11 @@ const BitcoinProvider = (props) => {
             currency: "BSV",
           }, */
         resp = await relaySend(outputs);
-        break;
+        return resp;
       default:
         console.log("no wallet selected");
         return null;
     }
-    return resp;
   });
 
   const logout = () => {
@@ -245,4 +247,4 @@ export { BitcoinProvider, useBitcoin };
 // Utils
 //
 
-const walletStorageKey = "powdao__BitcoinProvider_wallet";
+const walletStorageKey = "askbitcoin__BitcoinProvider_wallet";

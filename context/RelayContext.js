@@ -103,7 +103,6 @@ const RelayProvider = (props) => {
   );
 
   const relayAuthenticate = useCallback(async () => {
-    console.log("here");
     if (!relayOne) {
       console.info({ relayOne, w: window.relayone });
       throw new Error("Relay script not yet loaded!");
@@ -138,6 +137,7 @@ const RelayProvider = (props) => {
           return result;
         } catch (error) {
           console.log("relayx.send.error", outputs, error);
+          throw new Error(error);
         }
       }
     },

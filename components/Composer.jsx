@@ -8,7 +8,7 @@ import {
     ReactEditor,
     useFocused,
 } from "slate-react";
-import { createEditor } from "slate";
+import { createEditor, Node } from "slate";
 
 import nimble from "@runonbitcoin/nimble";
 import bops from "bops";
@@ -62,15 +62,23 @@ const Composer = ({ reply_tx, successAction }) => {
       
     },[tag, reply_tx])
 
+    const serialize = nodes => {
+      return nodes.map(n => Node.string(n)).join('\n')
+    }
+
 
     const handlePost = async (e) => {
       e.preventDefault()
-      const content = value[0].children[0].text;
-      
+      const content = serialize(editor.children)
+    
       let resp = await toast.promise(send(content, reply_tx), {
         pending: 'Transaction is pending 🚀',
         success: 'Transaction successful 🥳',
-        error: 'Transaction rejected 🤯'
+        error: {
+          render({data}){
+            return `${data}`
+          }
+        }
       }, {
       position: "top-center",
       autoClose: 5000,

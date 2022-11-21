@@ -118,11 +118,12 @@ const Header = () => {
                 </svg>
               </div>
             </Link> */}
-            <Link href={`/u/${paymail.split("@")[0]}`}>
+            {/* <Link href={`/u/${paymail.split("@")[0]}`}> */}
               <div className="ml-4 h-8 w-8 flex justify-center items-center cursor-pointer relative">
                 <UserIcon src={avatar} size={36} />
               </div>
-            </Link></>): (
+            {/* </Link> */}
+            </>): (
               <div
               onClick={()=>setWalletPopupOpen(true)}
               //onClick={authenticate}
