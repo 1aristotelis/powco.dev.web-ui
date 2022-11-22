@@ -187,5 +187,5 @@ export { TwetchProvider, useTwetch };
 // Utils
 //
 
-const paymailStorageKey = "powdao__TwetchProvider_paymail";
-const tokenTwetchAuthStorageKey = "powdao__TwetchProvider_tokenTwetchAuth";
+const paymailStorageKey = "askbitcoin__TwetchProvider_paymail";
+const tokenTwetchAuthStorageKey = "askbitcoin__TwetchProvider_tokenTwetchAuth";

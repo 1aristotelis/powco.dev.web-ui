@@ -203,5 +203,5 @@ export { RelayProvider, useRelay };
 // Utils
 //
 
-const paymailStorageKey = "powdao__RelayProvider_paymail";
-const runOwnerStorageKey = "powdao__RelayProvider_runOwner";
+const paymailStorageKey = "askbitcoin__RelayProvider_paymail";
+const runOwnerStorageKey = "askbitcoin__RelayProvider_runOwner";
