@@ -108,7 +108,7 @@ export default function Settings() {
           </button>
         </div>
         <div className="grow" />
-        <p className="mb-[68px] text-center text-xs text-gray-700 dark:text-gray-300 font-semibold ">
+        {/* <p className="mb-[68px] text-center text-xs text-gray-700 dark:text-gray-300 font-semibold ">
           Built for profit by
           <a
             href="https://twetch.com/u/652"
@@ -119,7 +119,7 @@ export default function Settings() {
             @652
           </a>
           , powered by BitCoin
-        </p>
+        </p> */}
       </div>
       <Drawer
         selector="#walletProviderPopupControler"
