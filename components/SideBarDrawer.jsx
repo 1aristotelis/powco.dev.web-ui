@@ -94,7 +94,7 @@ const SideBarDrawer = () => {
                         <div className='text-base leading-4 grow'>Chat</div>
                     </div>
                 </Link> */}
-                <Link href="/meet">
+                {/* <Link href="/meet">
                     <div className='mt-4 flex items-center cursor-pointer px-5 rounded-none hover:transition-all hover:bg-gray-300 hover:dark:bg-gray-700 h-8 xl:h-[48px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="h-6 w-6 mr-2.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -102,7 +102,7 @@ const SideBarDrawer = () => {
                         </svg>
                         <div className='text-base leading-4 grow'>Meet</div>
                     </div>
-                </Link>
+                </Link> */}
                 
                 {/* <Link href="/market">
                     <div className='mt-4 flex items-center cursor-pointer px-5 rounded-none hover:transition-all hover:bg-gray-300 hover:dark:bg-gray-700 h-8 xl:h-[48px]'>
@@ -129,7 +129,7 @@ const SideBarDrawer = () => {
                         </svg>
                         <div className='text-base leading-4 grow'>Academy</div>
                     </div>
-                </Link>
+                </Link>*/}
                 <Link href="/features">
                     <div className='mt-4 flex items-center cursor-pointer px-5 rounded-none hover:transition-all hover:bg-gray-300 hover:dark:bg-gray-700 h-8 xl:h-[48px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
@@ -137,7 +137,7 @@ const SideBarDrawer = () => {
                         </svg>
                         <div className='text-base leading-4 grow'>Features</div>
                     </div>
-                </Link> */}
+                </Link> 
                 <Link href="/settings">
                     <div className='mt-4 flex items-center cursor-pointer px-5 rounded-none hover:transition-all hover:bg-gray-300 hover:dark:bg-gray-700 h-8 xl:h-[48px]'>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
