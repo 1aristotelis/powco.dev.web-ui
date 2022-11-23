@@ -16,11 +16,6 @@ const TwetchProvider = (props) => {
 
   const [ready, setReady] = useState(false);
 
-  useEffect(() => {
-    setTwetch(getProvider());
-    setReady(true);
-  }, []);
-
   const getProvider = () => {
     if ("bitcoin" in window) {
       const provider = window.bitcoin;

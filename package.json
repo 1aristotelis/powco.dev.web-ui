@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "test": "jest",
+    "commit": "npx cz",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

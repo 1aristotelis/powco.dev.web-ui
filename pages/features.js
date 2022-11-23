@@ -23,7 +23,7 @@ export default function Features() {
         `https://api.whatsonchain.com/v1/bsv/main/address/${featureAddress}/balance`
       )
       .then((resp) => {
-        console.log(resp.data.confirmed * 1e-8);
+        console.log(resp.data);
         setBalance(resp.data.confirmed * 1e-8);
       });
   }, []);
@@ -121,7 +121,7 @@ export default function Features() {
                   </p>
                   <div className="grow" />
                   <p className="text-xs text-gray-900 dark:text-white">
-                    0/21 BSV
+                    {balance.toFixed(2)}/21 BSV
                   </p>
                 </div>
                 <div className="relative w-full bg-green-900 bg-opacity-50  h-2 rounded-lg">

@@ -99,7 +99,7 @@ const BitcoinProvider = (props) => {
           outputs = [
             {
               args: opReturn,
-              to: "askbitcoin@relayx.io",
+              to: "1MqPZFc31jUetZ5hxVtG4tijJSugAcSZCQ",
               sats: 2180,
             },
           ];
@@ -108,9 +108,9 @@ const BitcoinProvider = (props) => {
         case "relayx":
           outputs = {
             opReturn,
-            currency: "BSV",
-            amount: 2180 * 1e-8,
-            to: "askbitcoin@relayx.io",
+            currency: "USD",
+            amount: 0.02,
+            to: "1MqPZFc31jUetZ5hxVtG4tijJSugAcSZCQ",
           };
           resp = await relaySend(outputs);
           return resp;
