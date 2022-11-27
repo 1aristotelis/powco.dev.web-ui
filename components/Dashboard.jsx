@@ -54,7 +54,7 @@ const Dashboard = ({ data, error, loading }) => {
           <div className="relative">
             {issues?.map((entry) => {
               if (entry) {
-                return <GithubIssueCard {...entry} />;
+                return <GithubIssueCard key={entry.txid} {...entry} />;
               }
             })}
           </div>
