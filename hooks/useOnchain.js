@@ -5,7 +5,7 @@ const baseURL = "https://onchain.sv";
 
 export const BASE = `${baseURL}/api/v1`;
 
-const askbitcoin_onchain_app_id = "1HWaEAD5TXC2fWHDiua9Vue3Mf8V1ZmakN";
+const powcodev_onchain_app_id = "alpha.powco.dev";
 
 import axios from "../utils/axios";
 
@@ -37,8 +37,9 @@ export function useOnchain(path, queryParams) {
     mutate: refresh,
     isValidating: loading,
   } = useSWR(
-    `${BASE}${path}?app=${askbitcoin_onchain_app_id}&${params}`,
-    fetcher
+    `${BASE}${path}?app=${powcodev_onchain_app_id}&${params}`,
+    fetcher,
+    { revalidateOnFocus: false }
   );
 
   return { data, error, refresh, loading };

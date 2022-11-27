@@ -91,5 +91,5 @@ export { TuneProvider, useTuning };
 // Utils
 //
 
-const filterStorageKey = "askbitcoin__TuneProvider_filter";
-const sortStorageKey = "askbitcoin__TuneProvider_sort";
+const filterStorageKey = "powcodev__TuneProvider_filter";
+const sortStorageKey = "powcodev__TuneProvider_sort";

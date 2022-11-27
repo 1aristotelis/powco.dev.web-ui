@@ -97,11 +97,11 @@ const Composer = ({ reply_tx, successAction }) => {
 
       (async () => {
         try {
-          let { data: postTransactionResponse } = await axios.post('https://askbitcoin.ai/api/v1/transactions', {
+          let { data: postTransactionResponse } = await axios.post('https://powco.dev/api/v1/transactions', {
             transaction: rawTx
           });
 
-          console.log('askbitcoin_postTransactionResponse', postTransactionResponse);
+          console.log('powco.dev_postTransactionResponse', postTransactionResponse);
         } catch (error) {
           console.error('postTransactionResponse', error);
         }
@@ -132,62 +132,6 @@ const Composer = ({ reply_tx, successAction }) => {
         }
       })();
 
-      if (reply_tx){
-
-        (async () => {
-          try {
-            let { data: postTransactionResponse } = await axios.post('https://askbitcoin.ai/api/v1/answers', {
-              transaction: rawTx
-            });
-
-            console.log('api.answers.post.response', postTransactionResponse);
-          } catch (error) {
-            console.error('api.answers.post.response', error);
-          }
-        })();
-
-        (async () => {
-          try {
-
-            await axios.get(`https://askbitcoin.ai/api/v1/answers/${txid}`);
-
-            router.push(`/answers/${txid}`)
-
-          } catch (error) {
-
-            console.error('api.answers.show.error', error);
-          }
-        })();
-
-      } else {
-        
-        (async () => {
-          try {
-            let { data: postTransactionResponse } = await axios.post('https://askbitcoin.ai/api/v1/questions', {
-              transaction: rawTx
-            });
-
-            console.log('api.questions.post.response', postTransactionResponse);
-
-          } catch (error) {
-            console.error('api.questions.post.response', error);
-          }
-        })();
-
-        (async () => {
-          try {
-
-            await axios.get(`https://askbitcoin.ai/api/v1/questions/${txid}`);
-
-            router.push(`/questions/${txid}`)
-
-          } catch (error) {
-
-            console.error('api.questions.show.error', error);
-          }
-        })();
-
-      }
     };
 
     const handleChange = async (newValue) => {

@@ -127,7 +127,7 @@ const BitcoinProvider = (props) => {
       throw new Error("Please, sign in");
     }
     let resp, outputs;
-    const url = `https://askbitcoin.ai/api/v1/boostpow/${txid}/new?value=${value}&currency=${currency}`;
+    const url = `https://pow.co/api/v1/boostpow/${txid}/new?value=${value}&currency=${currency}`;
 
     console.log("boostpow.job.build", { url });
 
@@ -247,4 +247,4 @@ export { BitcoinProvider, useBitcoin };
 // Utils
 //
 
-const walletStorageKey = "askbitcoin__BitcoinProvider_wallet";
+const walletStorageKey = "powcodev__BitcoinProvider_wallet";

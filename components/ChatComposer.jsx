@@ -24,7 +24,7 @@ const ChatComposer = () => {
   //const { identity } = useBap();
 
   //const activeChannel = useActiveChannel();
-  const channelId = "askbitcoin"//duplicate on chatcomposer//last(window.location.pathname.split("/"));
+  const channelId = "powco.dev"//duplicate on chatcomposer//last(window.location.pathname.split("/"));
   let timeout = undefined;
 
   const handleSubmit = useCallback(
@@ -136,7 +136,7 @@ const ChatComposer = () => {
           name="msg_content"
           autoComplete="off"
           className="flex flex-col p-3 rounded-lg sm:rounded-xl  bg-gray-200  dark:bg-gray-600 w-full focus:outline-none"
-          placeholder="Message in askbitcoin chat"
+          placeholder="Message in powco.dev chat"
           onKeyUp={handleKeyUp}
           onKeyDown={handleKeyDown}
         />
