@@ -1,15 +1,31 @@
 import moment from 'moment'
 import React from 'react'
+import Link from 'next/link'
 import { UserIcon } from '.'
 import BoostButton from './BoostButton'
 
 const GithubIssueCard = (props) => {
     const { txid } = props
     const {issue, organization, repository, sender} = props.content
+    
+
+    const handleComment = (e) => {
+      e.preventDefault()
+      window.open(issue.html_url)
+    }
   return (
     <div className='grid grid-cols-12 bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 hover:dark:bg-gray-500 mt-0.5 first:rounded-t-lg'>
         <div className='col-span-12 flex items-center '>
-            <p className='p-4 text-sm italic text-gray-500 hover:underline'><a target="_blank" rel="noreferrer" href={repository.html_url}>{organization.login} /{repository.name}</a></p>
+            {/* <p className='p-4 text-sm italic text-gray-500 hover:underline'><a target="_blank" rel="noreferrer" href={repository.html_url}>{organization.login} /{repository.name}</a></p> */}
+            <p className='p-4 text-sm italic text-gray-500'>
+              <Link href={`/org/${organization.login}`}>
+                <span className='hover:underline cursor-pointer'>{organization.login}</span>
+              </Link>
+              <span className='mx-1'>/</span>
+              <Link href={`/org/${organization.login}/${repository.name}`}>
+                <span className='hover:underline cursor-pointer'>{repository.name}</span>
+              </Link>
+            </p>
         </div>
         <div className='col-span-12'>
             <div className='mb-0.5 px-4 pt-4 pb-1 grid items-start grid-cols-12 max-w-screen cursor-pointer'>
@@ -34,7 +50,7 @@ const GithubIssueCard = (props) => {
                     <div className='ml-1'>
                 <div className='grid grid-cols-12 gap-4 w-full'>
                   <div className='col-span-5'/>
-                  <div className='col-span-3 flex group items-center w-fit relative'>
+                  <div onClick={handleComment} className='col-span-3 flex group items-center w-fit relative'>
                     <svg
                       viewBox="0 0 40 40"
                       fill="none"

@@ -9,13 +9,13 @@ import {
   Composer,
   PostCard,
   OnchainPostCard,
-} from "../components";
+} from ".";
 
 import moment from "moment";
 import { useTuning } from "../context/TuningContext";
 import { useRouter } from "next/router";
 import { useBitcoin } from "../context/BitcoinContext";
-import GithubIssueCard from "../components/GithubIssueCard";
+import GithubIssueCard from "./GithubIssueCard";
 
 function ago(period) {
   return moment().subtract(1, period).unix() * 1000;
